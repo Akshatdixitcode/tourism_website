@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Offbeat Odyssey | Sacred Journeys & Mountain Escapes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+
+  const supabaseUrl = 'https://xvmgmtccqyhmtvdgcsif.supabase.co'
+  const supabaseKey = 'sb_publishable_iHqTPJhwL0Rzox3QZZK_0w_tRyJ1O1M'
+
+  window.supabase = createClient(supabaseUrl, supabaseKey, {
+    auth: {
+      persistSession: false,      // ← stops localStorage writes → fixes Tracking Prevention
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  })
+
+  console.log('Supabase Connected')
+</script>
+  <style>
+    :root {
+      --ink: #1a1410;
+      --ink-soft: #4a3f35;
+      --cream: #faf7f2;
+      --cream-dark: #f0ebe0;
+      --saffron: #d4700a;
+      --saffron-light: #f0a84a;
+      --forest: #1e3a2f;
+      --forest-mid: #2d5a45;
+      --gold: #b8962e;
+      --gold-light: #e6c36a;
+      --stone: #8a7a6a;
+      --white: #ffffff;
+      --border: rgba(26,20,16,0.08);
+      --shadow-sm: 0 2px 12px rgba(26,20,16,0.08);
+      --shadow-md: 0 8px 30px rgba(26,20,16,0.12);
+      --shadow-lg: 0 20px 60px rgba(26,20,16,0.18);
+      --radius: 1.5rem;
+      --radius-sm: 0.75rem;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1,h2,h3,h4,.serif { font-family: 'Cormorant Garamond', serif; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 500;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 600; color: var(--forest);
+      letter-spacing: -0.02em; cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .logo-dot { width: 8px; height: 8px; background: var(--saffron); border-radius: 50%; margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      color: var(--ink-soft); letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-admin {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--forest); color: white !important;
+      padding: 0.45rem 1rem; border-radius: 40px; font-size: 0.82rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-admin:hover { background: var(--forest-mid) !important; color: white !important; }
+    .menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(30,58,47,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,112,10,0.05) 0%, transparent 60%);
+    }
+    .hero-grid {
+      max-width: 1320px; margin: 0 auto; padding: 4rem 2rem;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(30,58,47,0.08); color: var(--forest);
+      padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.78rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-kicker span { width: 6px; height: 6px; background: var(--saffron); border-radius: 50%; }
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--ink); letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--forest); }
+    .hero-title strong { font-weight: 600; }
+    .hero-desc {
+      font-size: 1rem; color: var(--stone); max-width: 440px;
+      line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--forest); color: white;
+      padding: 0.8rem 1.8rem; border-radius: 40px;
+      font-size: 0.9rem; font-weight: 500; border: none; cursor: pointer;
+      transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: var(--forest-mid); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,58,47,0.25); }
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      padding: 0.8rem 1.6rem; border-radius: 40px;
+      font-size: 0.9rem; font-weight: 500; border: 1.5px solid var(--border);
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-ghost:hover { border-color: var(--ink-soft); background: rgba(26,20,16,0.04); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+    }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 600; color: var(--ink);
+      line-height: 1;
+    }
+    .hero-stat-label { font-size: 0.78rem; color: var(--stone); margin-top: 0.25rem; letter-spacing: 0.02em; }
+    .hero-visual { position: relative; }
+    .hero-img-wrap {
+      border-radius: 2rem 2rem 6rem 2rem;
+      overflow: hidden; box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/5; position: relative;
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-badge {
+      position: absolute; bottom: 2rem; left: -2rem;
+      background: white; border-radius: 1rem; padding: 1rem 1.4rem;
+      box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-badge-icon { font-size: 1.8rem; }
+    .hero-badge-text { font-size: 0.78rem; color: var(--stone); }
+    .hero-badge-title { font-weight: 600; color: var(--ink); font-size: 0.9rem; }
+    .hero-pill {
+      position: absolute; top: 2rem; right: -1.5rem;
+      background: var(--saffron); color: white;
+      border-radius: 40px; padding: 0.5rem 1rem;
+      font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem;
+      box-shadow: 0 4px 15px rgba(212,112,10,0.35);
+    }
+
+    /* SECTION HEADER */
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-kicker {
+      display: inline-block; color: var(--saffron); font-size: 0.75rem;
+      font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .section-title { font-size: clamp(2rem,3.5vw,3rem); font-weight: 400; color: var(--ink); margin-bottom: 0.75rem; }
+    .section-desc { color: var(--stone); max-width: 480px; margin: 0 auto; font-size: 0.93rem; }
+
+    /* CONTAINER */
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+    .section-pad { padding: 6rem 0; }
+
+    /* DESTINATIONS */
+    .dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .dest-card {
+      background: white; border-radius: var(--radius);
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+    .dest-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .dest-img-wrap { height: 240px; overflow: hidden; position: relative; }
+    .dest-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .dest-card:hover .dest-img-wrap img { transform: scale(1.05); }
+    .dest-price-tag {
+      position: absolute; top: 1rem; right: 1rem;
+      background: white; color: var(--forest);
+      font-weight: 600; font-size: 0.85rem;
+      padding: 0.35rem 0.8rem; border-radius: 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .dest-info { padding: 1.4rem 1.6rem 1.6rem; }
+    .dest-name { font-size: 1.35rem; font-weight: 500; color: var(--ink); margin-bottom: 0.35rem; font-family: 'Cormorant Garamond', serif; }
+    .dest-desc { font-size: 0.85rem; color: var(--stone); line-height: 1.5; margin-bottom: 1rem; }
+    .dest-footer { display: flex; align-items: center; justify-content: space-between; }
+    .dest-cta {
+      font-size: 0.8rem; font-weight: 600; color: var(--forest);
+      display: flex; align-items: center; gap: 0.3rem; cursor: pointer;
+      transition: gap 0.2s;
+    }
+    .dest-card:hover .dest-cta { gap: 0.6rem; }
+
+    /* FEATURES */
+    .features-strip {
+      background: var(--forest);
+      border-radius: var(--radius);
+      padding: 3rem;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; position: relative; overflow: hidden;
+    }
+    .features-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
+    }
+    .feature-item { padding: 2rem 1.5rem; position: relative; }
+    .feature-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: rgba(255,255,255,0.1);
+    }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .feature-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: white; margin-bottom: 0.4rem; font-weight: 500; }
+    .feature-text { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    /* TOURS */
+    .tours-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .tour-card {
+      background: white; border-radius: var(--radius);
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .tour-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .tour-img-wrap { height: 220px; overflow: hidden; position: relative; }
+    .tour-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .tour-card:hover .tour-img-wrap img { transform: scale(1.05); }
+    .tour-duration {
+      position: absolute; bottom: 1rem; left: 1rem;
+      background: rgba(26,20,16,0.75); color: white; backdrop-filter: blur(6px);
+      padding: 0.3rem 0.75rem; border-radius: 40px; font-size: 0.78rem; font-weight: 500;
+    }
+    .tour-info { padding: 1.4rem 1.6rem 1.6rem; }
+    .tour-name { font-size: 1.25rem; font-weight: 500; color: var(--ink); margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; }
+    .tour-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .tour-price { font-size: 1.1rem; font-weight: 600; color: var(--forest); font-family: 'Cormorant Garamond', serif; }
+    .tour-price span { font-size: 0.75rem; color: var(--stone); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .btn-view {
+      font-size: 0.8rem; font-weight: 600; color: white;
+      background: var(--saffron); border: none; border-radius: 40px;
+      padding: 0.45rem 1rem; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-view:hover { background: #b85f08; }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--cream-dark);
+      border-radius: 2.5rem; padding: 4rem;
+      position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '"'; font-family: 'Cormorant Garamond', serif;
+      font-size: 20rem; color: rgba(26,20,16,0.04);
+      position: absolute; top: -4rem; left: 2rem; line-height: 1;
+    }
+    .testi-card {
+      background: white; border-radius: 1.5rem; padding: 2rem;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .testi-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; }
+    .testi-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--ink); line-height: 1.6; font-style: italic; margin-bottom: 1.2rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--forest); display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 600; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: 0.85rem; color: var(--ink); }
+
+    /* NEWSLETTER */
+    .newsletter-wrap {
+      background: linear-gradient(135deg, var(--forest) 0%, #2d5a45 100%);
+      border-radius: var(--radius);
+      padding: 4rem;
+      position: relative; overflow: hidden;
+    }
+    .newsletter-wrap::after {
+      content: ''; position: absolute; top: -30%; right: -10%;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.03); pointer-events: none;
+    }
+    .newsletter-title { font-size: clamp(1.8rem,3vw,2.8rem); color: white; margin-bottom: 0.75rem; font-weight: 400; }
+    .newsletter-desc { color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-size: 0.93rem; }
+    .newsletter-form { display: flex; gap: 0.75rem; max-width: 480px; }
+    .newsletter-form input {
+      flex: 1; padding: 0.85rem 1.25rem; border-radius: 40px;
+      border: none; font-family: inherit; font-size: 0.9rem;
+      background: rgba(255,255,255,0.12); color: white;
+      backdrop-filter: blur(4px);
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .newsletter-form input:focus { outline: none; background: rgba(255,255,255,0.18); }
+    .btn-saffron {
+      background: var(--saffron); color: white; border: none;
+      padding: 0.85rem 1.6rem; border-radius: 40px; font-weight: 600;
+      font-size: 0.88rem; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-saffron:hover { background: #b85f08; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      padding: 2rem; text-align: center; font-size: 0.85rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    /* ── DETAIL MODAL ── */
+    .detail-modal {
+      position: fixed; inset: 0;
+      background: rgba(10,8,6,0.7); backdrop-filter: blur(12px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      visibility: hidden; opacity: 0; transition: 0.3s;
+      padding: 1rem;
+    }
+    .detail-modal.active { visibility: visible; opacity: 1; }
+    .detail-card {
+      background: var(--cream); max-width: 960px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      border-radius: 2rem; position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+    .detail-card::-webkit-scrollbar { width: 5px; }
+    .detail-card::-webkit-scrollbar-track { background: transparent; }
+    .detail-card::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+    .close-detail {
+      position: sticky; top: 1rem; float: right; margin-right: 1rem;
+      width: 38px; height: 38px; border-radius: 50%; background: white;
+      border: 1px solid var(--border); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm); z-index: 10; transition: all 0.2s; color: var(--ink);
+    }
+    .close-detail:hover { background: var(--ink); color: white; }
+
+    /* Detail hero */
+    .d-hero {
+      height: 320px; background-size: cover; background-position: center;
+      border-radius: 2rem 2rem 0 0; position: relative; overflow: hidden;
+    }
+    .d-hero-overlay {
+      inset: 0; position: absolute;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(10,8,6,0.72) 100%);
+      display: flex; align-items: flex-end; padding: 2rem 2.5rem;
+    }
+    .d-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; color: white; font-weight: 500; line-height: 1.1;
+    }
+
+    /* Detail stats bar */
+    .d-stats {
+      display: flex; gap: 0; background: white; margin: 0 2rem;
+      transform: translateY(-1px);
+      border-radius: 0 0 1.5rem 1.5rem;
+      border: 1px solid var(--border); border-top: none;
+      overflow: hidden;
+    }
+    .d-stat {
+      flex: 1; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.6rem;
+      position: relative;
+    }
+    .d-stat:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: var(--border);
+    }
+    .d-stat i { color: var(--saffron); font-size: 1rem; }
+    .d-stat-label { font-size: 0.7rem; color: var(--stone); }
+    .d-stat-val { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+
+    /* Detail body */
+    .d-body { padding: 2rem 2.5rem 2.5rem; }
+    .d-section { margin-bottom: 2.5rem; }
+    .d-section-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--stone); margin-bottom: 1.25rem;
+    }
+    .d-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .d-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+    /* Inclusions / Exclusions box */
+    .inc-box {
+      background: white; border-radius: 1.25rem;
+      padding: 1.5rem; border: 1px solid var(--border);
+    }
+    .inc-box-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .inc-box-title.green { color: var(--forest); }
+    .inc-box-title.red { color: #b91c1c; }
+    .inc-item {
+      font-size: 0.85rem; line-height: 1.5; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border); color: var(--ink-soft);
+      display: flex; align-items: flex-start; gap: 0.6rem;
+    }
+    .inc-item:last-child { border-bottom: none; }
+    .inc-tick { color: var(--forest); font-weight: 700; flex-shrink: 0; }
+    .exc-tick { color: #b91c1c; font-weight: 700; flex-shrink: 0; }
+
+    /* Itinerary */
+    .itinerary-list { display: flex; flex-direction: column; gap: 0; }
+    .day-row {
+      display: flex; gap: 1.25rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border);
+      position: relative; cursor: default; transition: background 0.15s;
+    }
+    .day-row:last-child { border-bottom: none; }
+    .day-num {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--cream-dark); display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--forest);
+    }
+    .day-content { flex: 1; padding-top: 0.15rem; }
+    .day-title { font-weight: 600; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.3rem; }
+    .day-desc { font-size: 0.82rem; color: var(--stone); line-height: 1.5; }
+
+    /* Policy boxes */
+    .policy-box {
+      background: white; border-radius: 1.25rem;
+      padding: 1.5rem; border: 1px solid var(--border); margin-bottom: 1.25rem;
+    }
+    .policy-box-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .policy-text { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.7; white-space: pre-line; }
+
+    /* Booking form inside modal */
+    .booking-form-wrap {
+      background: var(--forest); border-radius: 1.5rem;
+      padding: 2rem; margin-top: 0.5rem;
+    }
+    .booking-form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: white; margin-bottom: 0.4rem; font-weight: 500;
+    }
+    .booking-form-sub { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .form-field input, .form-field textarea {
+      width: 100%; padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0.75rem; color: white; font-family: inherit; font-size: 0.88rem;
+      transition: border-color 0.2s;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--gold-light); }
+    .form-full { margin-top: 0.75rem; }
+    .btn-book {
+      width: 100%; margin-top: 1rem;
+      background: var(--saffron); color: white;
+      border: none; border-radius: 40px; padding: 0.95rem;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      transition: all 0.25s; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .btn-book:hover { background: #b85f08; transform: translateY(-1px); }
+    input[type="date"]{
+      color:#fff;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator{
+      filter: invert(1);
+      cursor:pointer;
+    }
+    /* ── ADMIN ── */
+    .admin-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,8,6,0.6); backdrop-filter: blur(8px);
+      z-index: 1000; display: flex; justify-content: center; align-items: center;
+      visibility: hidden; opacity: 0; transition: 0.25s; padding: 1rem;
+    }
+    .admin-overlay.active { visibility: visible; opacity: 1; }
+    .admin-panel {
+      background: white; max-width: 880px; width: 100%;
+      border-radius: 2rem; padding: 2rem;
+      max-height: 88vh; overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+    }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .admin-title { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; color: var(--forest); }
+    .admin-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--stone); line-height: 1; }
+    .admin-tabs { display: flex; gap: 0.25rem; background: var(--cream); border-radius: 40px; padding: 0.3rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .tab-btn {
+      background: none; border: none; padding: 0.5rem 1rem;
+      border-radius: 40px; font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; color: var(--stone); transition: all 0.2s;
+    }
+    .tab-btn.active { background: white; color: var(--forest); box-shadow: var(--shadow-sm); font-weight: 600; }
+    .form-group { margin-bottom: 0.85rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.3rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 0.6rem;
+      font-family: inherit; font-size: 0.88rem; color: var(--ink);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--forest); }
+    .btn-add {
+      background: var(--forest); color: white; border: none;
+      padding: 0.6rem 1.2rem; border-radius: 40px; font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-add:hover { background: var(--forest-mid); }
+    .item-list { margin-top: 1rem; max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+    .item-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--cream); border-radius: 0.75rem; padding: 0.8rem 1rem;
+      border: 1px solid var(--border); gap: 1rem; flex-wrap: wrap;
+    }
+    .item-row-name { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+    .item-row-sub { font-size: 0.78rem; color: var(--stone); }
+    .item-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+    .btn-edit { background: var(--gold); color: white; border: none; border-radius: 30px; padding: 0.3rem 0.7rem; font-size: 0.76rem; cursor: pointer; }
+    .btn-del { background: #b91c1c; color: white; border: none; border-radius: 30px; padding: 0.3rem 0.7rem; font-size: 0.76rem; cursor: pointer; }
+    .request-card {
+      background: var(--cream); border-radius: 1rem; padding: 1rem 1.2rem;
+      border: 1px solid var(--border); margin-bottom: 0.5rem;
+    }
+    .request-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+    .request-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+    .request-date { font-size: 0.74rem; color: var(--stone); }
+    .request-tour { font-size: 0.8rem; color: var(--forest); font-weight: 500; margin-bottom: 0.3rem; }
+    .request-msg { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* Swiper styles */
+    .swiper { padding-bottom: 3rem !important; }
+    .swiper-pagination-bullet { background: var(--stone); }
+    .swiper-pagination-bullet-active { background: var(--forest); }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-img-wrap { aspect-ratio: 16/9; border-radius: 1.5rem; }
+      .hero-badge { display: none; }
+      .hero-pill { right: 1rem; }
+      .dest-grid { grid-template-columns: 1fr 1fr; }
+      .tours-grid { grid-template-columns: 1fr 1fr; }
+      .features-strip { grid-template-columns: 1fr 1fr; padding: 2rem; }
+      .feature-item:nth-child(2)::after { display: none; }
+      .nav-links { display: none; }
+      .menu-icon { display: block; }
+      .nav-links.active { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: white; padding: 1.5rem 2rem; gap: 1rem; box-shadow: var(--shadow-md); z-index: 499; }
+      .d-two-col { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .d-stats { flex-direction: column; margin: 0 1rem; }
+      .d-stat::after { display: none; }
+    }
+    @media (max-width: 600px) {
+      .dest-grid { grid-template-columns: 1fr; }
+      .tours-grid { grid-template-columns: 1fr; }
+      .features-strip { grid-template-columns: 1fr; }
+      .feature-item::after { display: none !important; }
+      .d-body { padding: 1.25rem 1.25rem 2rem; }
+      .hero-stats { flex-direction: column; gap: 1.25rem; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">🏔 Offbeat Odyssey<div class="logo-dot"></div></a>
+    <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+<div class="nav-links" id="navLinks">
+  <a href="#toursSection">Tours</a>
+  <a href="resort.html">Resort Stay</a>
+  <a href="admin.html" class="nav-admin">
+    <i class="fas fa-shield-halved"></i> Admin
+  </a>
+</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid container">
+    <div>
+      <div class="hero-kicker"><span></span> India's Offbeat Travel Co.</div>
+      <h1 class="hero-title">
+        Explore the <em>unexpected</em>,<br>
+        <strong>beyond ordinary</strong> travel
+      </h1>
+      <p class="hero-desc">Curated treks, sacred yatras, remote valleys. Your journey begins where the map ends — with people who actually live there.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" id="searchBtn"><i class="fas fa-compass"></i> Find a journey</button>
+        <button class="btn-ghost"><i class="fas fa-phone"></i> Talk to a guide</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">200+</div><div class="hero-stat-label">Itineraries crafted</div></div>
+        <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Average rating</div></div>
+        <div><div class="hero-stat-num">8K+</div><div class="hero-stat-label">Happy travellers</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="Upv0GPLiuCuvnAUwJoCsCxqZ2vwf5UHdWCxH4kZQM-SUZFvBbtUtDw_yTZLIwCHBpiSnFxIlTK6xy8WlTQHJvfSn6OWlkEwyWKRDTEw9b1v3pAMEEHsl5hxGK98WeccQHutYEyhuPL-52H3DPAKzDDbp2ZRsUyKGkt2PC5ylrmPsgMrtUN4cP--CEymecxDc.jpg">
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🛕</div>
+        <div>
+          <div class="hero-badge-title">Char Dham Yatra</div>
+          <div class="hero-badge-text">From ₹27,500/person</div>
+        </div>
+      </div>
+      <div class="hero-pill"><i class="fas fa-shield-check"></i> 100% Safe</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="container" style="padding-bottom:5rem;">
+  <div class="features-strip">
+    <div class="feature-item"><div class="feature-icon">🔒</div><div class="feature-name">Safe & Secure</div><div class="feature-text">100% protected bookings. Your trust is our foundation.</div></div>
+    <div class="feature-item"><div class="feature-icon">🎧</div><div class="feature-name">24/7 Support</div><div class="feature-text">Round-the-clock assistance on every journey.</div></div>
+    <div class="feature-item"><div class="feature-icon">💰</div><div class="feature-name">Best Price</div><div class="feature-text">Transparent pricing. No hidden charges, ever.</div></div>
+    <div class="feature-item"><div class="feature-icon">🏔</div><div class="feature-name">Expert Guides</div><div class="feature-text">Local professionals who know the terrain.</div></div>
+  </div>
+</div>
+
+<!-- TOURS -->
+<section id="toursSection" class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">Featured Itineraries</div>
+      <h2 class="section-title">Complete travel packages</h2>
+      <p class="section-desc">Click any package to see full day-by-day itinerary, inclusions, and pricing</p>
+    </div>
+    <div id="toursGrid" class="tours-grid"></div>
+  </div>
+</section>
+<!-- STAY WITH US -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">Mountain Luxury Retreat</div>
+      <h2 class="section-title">Stay With Us</h2>
+      <p class="section-desc">
+        Relax in our premium mountain resort surrounded by nature, comfort and breathtaking Himalayan views.
+      </p>
+    </div>
+
+    <div class="tour-card" style="max-width:900px; margin:auto;">
+      <div class="tour-img-wrap" style="height:420px;">
+        <img 
+          src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1400"
+          alt="Mountain Resort">
+      </div>
+
+      <div class="tour-info" style="text-align:center;">
+        <h3 class="tour-name" style="font-size:2rem;">
+          Dream View Resort
+        </h3>
+
+        <p style="
+          color: var(--stone);
+          margin: 1rem auto 1.8rem;
+          max-width: 700px;
+          line-height: 1.8;
+        ">
+          Experience peaceful luxury in the heart of the mountains with scenic rooms,
+          bonfire nights, delicious local cuisine, and unforgettable sunrise views.
+        </p>
+
+        <a href="resort.html">
+          <button class="btn-primary">
+            <i class="fas fa-hotel"></i>
+            Check Our Resort
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="testimonials-section">
+      <div class="section-header" style="margin-bottom:2.5rem;">
+        <div class="section-kicker">Traveller Stories</div>
+        <h2 class="section-title">What our adventurers say</h2>
+      </div>
+      <div class="swiper mySwiper"><div class="swiper-wrapper" id="testimonialsWrapper"></div><div class="swiper-pagination"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="container">
+    <div class="newsletter-wrap">
+      <h2 class="newsletter-title">Get secret deals<br>&amp; early access</h2>
+      <p class="newsletter-desc">Join 5,000+ adventurers. No spam, just real deals.</p>
+      <div class="newsletter-form">
+        <input type="email" id="newsEmail" placeholder="Your email address">
+        <button class="btn-saffron" id="subscribeBtn">Subscribe →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 <strong>Offbeat Odyssey</strong> — All rights reserved &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+  </div>
+</footer>
+
+<!-- DETAIL MODAL -->
+<div id="detailModal" class="detail-modal">
+  <div class="detail-card">
+    <button class="close-detail" id="closeDetailBtn">&#10005;</button>
+    <div id="dynamicDetailContent"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+
+// ── always read from window.supabase so the module assignment is visible ──
+function db() {
+  if (!window.supabase) throw new Error('Supabase not ready');
+  return window.supabase;
+}
+
+let tours = [], testimonials = [], customerRequests = [];
+
+const defaultTours = [
+  {
+    title:"🛕 Char Dham Yatra Ex Haridwar",
+    img:"https://images.pexels.com/photos/361104/pexels-photo-361104.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    days:"10 Days / 9 Nights",
+    price:"₹27,500 per person",
+    inclusions:[
+      "Transportation from Haridwar to Haridwar",
+      "Hotel accommodation on twin/triple sharing",
+      "Daily breakfast and dinner",
+      "Kedarnath camp stay",
+      "Experienced driver and guide",
+      "All tolls, parking and driver allowance",
+      "Travel support throughout journey",
+      "Forest permits and camping charges"
+    ],
+    exclusions:[
+      "Flight/train tickets",
+      "Helicopter charges",
+      "Pony / Palki charges",
+      "Lunch and personal expenses",
+      "GST charges",
+      "Travel insurance",
+      "Camera and monument fees"
+    ],
+    itinerary:[
+      "Day 1 | Haridwar → Barkot via Mussoorie & Kempty Falls",
+      "Day 2 | Barkot → Yamunotri → Barkot",
+      "Day 3 | Barkot → Uttarkashi & Vishwanath Temple",
+      "Day 4 | Uttarkashi → Gangotri → Uttarkashi",
+      "Day 5 | Uttarkashi → Guptkashi",
+      "Day 6 | Guptkashi → Kedarnath",
+      "Day 7 | Kedarnath → Guptkashi",
+      "Day 8 | Guptkashi → Joshimath / Pipalkoti",
+      "Day 9 | Badrinath Darshan & Mana Village",
+      "Day 10 | Return to Rishikesh & Haridwar"
+    ],
+    cancellation:"30+ days: 70% refund\n15-29 days: 50% refund\n7-14 days: 25% refund\nLess than 7 days: No refund",
+    guidelines:"Carry valid ID proof\nWarm clothes mandatory\nMedical fitness advised\nAvoid littering in Himalayan region\nCarry raincoat and trekking shoes"
+  },
+  {
+    title:"🔱 Kedarnath & Badrinath Do Dham Yatra",
+    img:"https://images.pexels.com/photos/1658967/pexels-photo-1658967.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    days:"6 Days / 5 Nights",
+    price:"₹13,499 per person",
+    inclusions:[
+      "5 Nights accommodation",
+      "Breakfast & Dinner",
+      "Transportation from Haridwar",
+      "Sightseeing as per itinerary",
+      "Driver allowances and toll tax",
+      "Safety equipment",
+      "Forest permits"
+    ],
+    exclusions:[
+      "Helicopter tickets",
+      "Pony / palki charges",
+      "Lunch & beverages",
+      "Personal expenses",
+      "Travel insurance",
+      "GST"
+    ],
+    itinerary:[
+      "Day 1 | Haridwar → Guptkashi",
+      "Day 2 | Guptkashi → Kedarnath Trek",
+      "Day 3 | Kedarnath → Guptkashi",
+      "Day 4 | Guptkashi → Joshimath / Badrinath",
+      "Day 5 | Badrinath → Rishikesh",
+      "Day 6 | Rishikesh → Haridwar"
+    ],
+    cancellation:"30+ days: 80% refund\n15-29 days: 50% refund\nLess than 15 days: No refund",
+    guidelines:"Carry Aadhaar card\nWarm clothes required\nTrekking shoes recommended\nSenior citizens should consult doctor"
+  },
+  {
+    title:"🕉 Kedarnath Ji Yatra",
+    img:"https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    days:"4 Days / 3 Nights",
+    price:"₹8,499 per person",
+    inclusions:[
+      "3 Nights accommodation",
+      "3 Breakfast & 3 Dinner",
+      "Transport from Haridwar",
+      "Sightseeing as per itinerary",
+      "Yatra registration",
+      "Parking and toll taxes",
+      "Driver allowances"
+    ],
+    exclusions:[
+      "Helicopter charges",
+      "Personal expenses",
+      "Pony and palki",
+      "Insurance",
+      "Lunch and snacks",
+      "GST"
+    ],
+    itinerary:[
+      "Day 1 | Haridwar → Guptkashi",
+      "Day 2 | Guptkashi → Kedarnath Trek & Darshan",
+      "Day 3 | Kedarnath → Guptkashi",
+      "Day 4 | Return to Haridwar / Rishikesh"
+    ],
+    cancellation:"No refund within 7 days of departure",
+    guidelines:"Carry warm clothes and trekking shoes\nMedical kit recommended\nWeather may affect schedule"
+  }
+];
+
+const defaultTestimonials = [
+  { text:"The Char Dham yatra was completely seamless. Offbeat Odyssey delivered exactly as promised — comfortable hotels, great food, and an incredibly knowledgeable guide throughout.", name:"Priya Sharma", trip:"Char Dham Yatra" },
+  { text:"The Ladakh bike expedition was the trip of a lifetime. The support vehicle and team made everything stress-free. Watching the sunrise at Pangong Lake... unforgettable.", name:"Amit Khanna", trip:"Ladakh Expedition" },
+  { text:"Goecha La was physically demanding but the guides were exceptional. Waking up to Khangchendzonga at summit — no words. I'm already planning my next trek with them.", name:"Sneha Reddy", trip:"Goecha La Trek" },
+  { text:"Spiti Valley tour was beyond our expectations. The homestays were cozy, the roads were an adventure, and our guide knew every hidden gem along the way.", name:"Rahul Mehra", trip:"Spiti Valley" },
+  { text:"Kashmir Great Lakes trek was absolutely breathtaking. Every campsite felt like a painting. The team's logistics were flawless from day one.", name:"Ananya Bose", trip:"Kashmir Great Lakes" }
+];
+
+// ── Helper: escape HTML ──
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+}
+
+// ===============================
+// INIT — poll until module ready
+// ===============================
+window.addEventListener('load', async () => {
+  let attempts = 0;
+  while (!window.supabase && attempts++ < 30) {
+    await new Promise(r => setTimeout(r, 100));
+  }
+  if (!window.supabase) {
+    alert('Supabase failed to load. Check your connection.');
+    return;
+  }
+  console.log('Supabase Ready');
+  await loadData();
+});
+
+// ===============================
+// LOAD ALL DATA
+// ===============================
+async function loadData() {
+
+
+
+  // TOURS
+  try {
+    let { data, error } = await db().from('tours').select('*');
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      tours = [];
+    } else {
+      tours = data;
+    }
+  } catch (e) {
+    console.error('Tours load error:', e);
+    tours = [...defaultTours];
+  }
+
+  // TESTIMONIALS
+  try {
+    let { data, error } = await db().from('testimonials').select('*');
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      testimonials = [];
+    } else {
+      testimonials = data;
+    }
+  } catch (e) {
+    console.error('Testimonials load error:', e);
+    testimonials = [...defaultTestimonials];
+  }
+
+  // BOOKINGS
+  try {
+    let { data, error } = await db().from('bookings').select('*').order('id', { ascending: false });
+    if (error) throw error;
+    customerRequests = data || [];
+  } catch (e) {
+    console.error('Bookings load error:', e);
+    customerRequests = [];
+  }
+
+  syncUI();
+}
+
+// ===============================
+// ADD DESTINATION
+// ===============================
+async function uploadImage(file) {
+  if (!file) return '';
+
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { error } = await db().storage
+    .from('tour-images')
+    .upload(fileName, file);
+
+  if (error) throw error;
+
+  const { data } = db().storage
+    .from('tour-images')
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
+}
+// ===============================
+// ADD TOUR
+// ===============================
+async function addTour() {
+
+  const file = document.getElementById('tourImg').files[0];
+
+  const newTour = {
+    title: document.getElementById('tourTitle').value.trim(),
+    img: '',
+    days: document.getElementById('tourDays').value.trim(),
+    price: document.getElementById('tourPrice').value.trim(),
+    inclusions: document.getElementById('tourInclusions').value
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean),
+
+    exclusions: document.getElementById('tourExclusions').value
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean),
+
+    cancellation: document.getElementById('tourCancellation').value.trim(),
+
+    guidelines: document.getElementById('tourGuidelines').value.trim(),
+
+    itinerary: document.getElementById('tourItinerary').value
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean)
+  };
+
+  if (!newTour.title) {
+    alert('Please enter a tour title.');
+    return;
+  }
+
+  try {
+
+    // Upload image
+    if (file) {
+      newTour.img = await uploadImage(file);
+    }
+
+    // Insert into database
+    const { data, error } = await db()
+      .from('tours')
+      .insert([newTour])
+      .select();
+
+    if (error) throw error;
+
+    if (data && data.length > 0) {
+      tours.push(data[0]);
+    } else {
+      tours.push(newTour);
+    }
+
+    syncUI();
+
+    alert('Tour added successfully!');
+
+    // Clear form
+    [
+      'tourTitle',
+      'tourImg',
+      'tourDays',
+      'tourPrice',
+      'tourInclusions',
+      'tourExclusions',
+      'tourCancellation',
+      'tourGuidelines',
+      'tourItinerary'
+    ].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+
+  } catch (e) {
+    console.error(e);
+    alert('Error adding tour: ' + e.message);
+  }
+}
+
+// ===============================
+// ADD TESTIMONIAL
+// ===============================
+async function addTestimonial() {
+  const newT = {
+    text: document.getElementById('testiText').value.trim(),
+    name: document.getElementById('testiName').value.trim()
+  };
+  if (!newT.text || !newT.name) { alert('Please fill in all testimonial fields.'); return; }
+  try {
+    const { error } = await db().from('testimonials').insert([newT]);
+    if (error) throw error;
+    testimonials.push(newT);
+    syncUI();
+    alert('Testimonial added!');
+    ['testiText','testiName'].forEach(id => document.getElementById(id).value = '');
+  } catch (e) {
+    console.error(e);
+    alert('Error adding testimonial: ' + e.message);
+  }
+}
+
+// ===============================
+// SAVE BOOKING / ENQUIRY
+// ===============================
+async function saveBooking(data) {
+  try {
+    const { error } = await db().from('bookings').insert([data]);
+    if (error) throw error;
+    customerRequests.unshift(data);
+    syncUI();
+    return true;
+  } catch (e) {
+    console.error(e);
+    alert('Booking failed: ' + e.message);
+    return false;
+  }
+}
+
+// ===============================
+// DELETE HELPERS
+// ===============================
+
+
+async function deleteTour(idx) {
+  const t = tours[idx];
+  try {
+    if (t.id) await db().from('tours').delete().eq('id', t.id);
+    tours.splice(idx, 1);
+    syncUI();
+  } catch (e) { console.error(e); alert('Delete failed: ' + e.message); }
+}
+
+async function deleteTestimonial(idx) {
+  const t = testimonials[idx];
+  try {
+    if (t.id) await db().from('testimonials').delete().eq('id', t.id);
+    testimonials.splice(idx, 1);
+    syncUI();
+  } catch (e) { console.error(e); alert('Delete failed: ' + e.message); }
+}
+
+async function deleteRequest(idx) {
+  const r = customerRequests[idx];
+  try {
+    if (r.id) await db().from('bookings').delete().eq('id', r.id);
+    customerRequests.splice(idx, 1);
+    renderAdminLists();
+  } catch (e) { console.error(e); alert('Delete failed: ' + e.message); }
+}
+
+
+// ===============================
+// RENDER — TOURS
+// ===============================
+function renderTours() {
+  document.getElementById('toursGrid').innerHTML = tours.map((t, idx) => `
+    <div class="tour-card" onclick="showTourDetail(${idx})">
+      <div class="tour-img-wrap">
+        <img src="${esc(t.img)}" alt="${esc(t.title)}" loading="lazy">
+        <div class="tour-duration"><i class="far fa-clock"></i> ${esc(t.days)}</div>
+      </div>
+      <div class="tour-info">
+        <h3 class="tour-name">${esc(t.title)}</h3>
+        <div class="tour-meta">
+          <div class="tour-price">${esc(t.price)} <span>onwards</span></div>
+          <button class="btn-view"><i class="fas fa-eye"></i> View Details</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ===============================
+// RENDER — TESTIMONIALS + SWIPER
+// ===============================
+function renderTestimonials() {
+  document.getElementById('testimonialsWrapper').innerHTML = testimonials.map(t => {
+    const initials = (t.name || '?').split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+    return `<div class="swiper-slide">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">${esc(t.text)}</div>
+        <div class="testi-author">
+          <div class="testi-avatar">${initials}</div>
+          <div>
+            <div class="testi-name">${esc(t.name)}</div>
+            <div style="font-size:0.75rem;color:var(--stone);">${esc(t.trip || 'Traveller')}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  if (window.mySwiper) { window.mySwiper.destroy(true, true); window.mySwiper = null; }
+
+const count = testimonials.length;
+
+window.mySwiper = new Swiper('.mySwiper', {
+  loop: count >= 4,
+  autoplay: count > 1 ? {
+    delay: 4500,
+    disableOnInteraction: false
+  } : false,
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+
+  slidesPerView: 1,
+  spaceBetween: 20,
+
+  breakpoints: {
+    640: {
+      slidesPerView: Math.min(2, count)
+    },
+    1024: {
+      slidesPerView: Math.min(3, count)
+    }
+  }
+});
+}
+
+// ===============================
+// TOUR DETAIL MODAL
+// ===============================
+window.showTourDetail = function(idx) {
+  const t = tours[idx];
+
+  const inc  = Array.isArray(t.inclusions)  ? t.inclusions  : (t.inclusions  || '').split('\n').filter(l => l.trim());
+  const exc  = Array.isArray(t.exclusions)  ? t.exclusions  : (t.exclusions  || '').split('\n').filter(l => l.trim());
+  const itin = Array.isArray(t.itinerary)   ? t.itinerary   : (t.itinerary   || '').split('\n').filter(l => l.trim());
+
+  const heroImg = t.img || 'https://images.pexels.com/photos/1676822/pexels-photo-1676822.jpeg';
+
+  const renderInc = inc.map(l => `
+    <div class="inc-item"><span class="inc-tick">✓</span><span>${esc(l)}</span></div>`).join('');
+
+  const renderExc = exc.map(l => `
+    <div class="inc-item"><span class="exc-tick">✗</span><span>${esc(l)}</span></div>`).join('');
+
+  const renderDays = itin.map((day, i) => {
+    const sep     = day.indexOf('|') > -1 ? '|' : ':';
+    const sepIdx  = day.indexOf(sep);
+    const dayTitle = sepIdx > -1 ? day.substring(0, sepIdx).trim() : `Day ${i + 1}`;
+    const dayDesc  = sepIdx > -1 ? day.substring(sepIdx + 1).trim() : day;
+    return `
+      <div class="day-row">
+        <div class="day-num">${i + 1}</div>
+        <div class="day-content">
+          <div class="day-title">${esc(dayTitle)}</div>
+          <div class="day-desc">${esc(dayDesc)}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('dynamicDetailContent').innerHTML = `
+    <div class="d-hero" style="background-image:url('${esc(heroImg)}')">
+      <div class="d-hero-overlay">
+        <h2 class="d-hero-title">${esc(t.title)}</h2>
+      </div>
+    </div>
+
+    <div class="d-stats">
+      <div class="d-stat">
+        <i class="fas fa-rupee-sign"></i>
+        <div><div class="d-stat-label">Package Cost</div><div class="d-stat-val">${esc(t.price)}</div></div>
+      </div>
+      <div class="d-stat">
+        <i class="far fa-calendar-days"></i>
+        <div><div class="d-stat-label">Duration</div><div class="d-stat-val">${esc(t.days)}</div></div>
+      </div>
+      <div class="d-stat">
+        <i class="fas fa-user-group"></i>
+        <div><div class="d-stat-label">Type</div><div class="d-stat-val">Guided Group</div></div>
+      </div>
+    </div>
+
+    <div class="d-body">
+
+      <div class="d-section">
+        <div class="d-section-label"><i class="fas fa-list-check"></i> Package Details</div>
+        <div class="d-two-col">
+          <div class="inc-box">
+            <div class="inc-box-title green"><i class="fas fa-circle-check"></i> Inclusions</div>
+            ${renderInc}
+          </div>
+          <div class="inc-box">
+            <div class="inc-box-title red"><i class="fas fa-circle-xmark"></i> Exclusions</div>
+            ${renderExc}
+          </div>
+        </div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-label"><i class="fas fa-route"></i> Day-by-Day Itinerary</div>
+        <div class="itinerary-list">${renderDays}</div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-label"><i class="fas fa-file-lines"></i> Policies & Guidelines</div>
+        <div class="policy-box">
+          <div class="policy-box-title"><i class="fas fa-ban" style="color:var(--saffron)"></i> Cancellation Policy</div>
+          <div class="policy-text">${esc(t.cancellation || '')}</div>
+        </div>
+        <div class="policy-box">
+          <div class="policy-box-title"><i class="fas fa-shield-halved" style="color:var(--forest)"></i> Important Travel Guidelines</div>
+          <div class="policy-text">${esc(t.guidelines || '')}</div>
+        </div>
+      </div>
+
+      <div class="d-section">
+        <div class="booking-form-wrap">
+          <div class="booking-form-title">Request Booking / Enquiry</div>
+          <div class="booking-form-sub">Fill in your details and we'll get back to you within 24 hours</div>
+          <div class="form-row">
+            <div class="form-field"><input type="text"  id="reqName"  placeholder="Full name *"></div>
+            <div class="form-field"><input type="email" id="reqEmail" placeholder="Email address *"></div>
+          </div>
+          <div class="form-row" style="margin-top:0.75rem;">
+            <div class="form-field"><input type="text" id="reqPhone" placeholder="Phone number"></div>
+            <div class="form-field">
+            <input
+              type="date"
+              id="reqDate"
+              placeholder="Preferred travel date">
+          </div>
+          </div>
+          <div class="form-field form-full">
+            <textarea id="reqMsg" rows="3" placeholder="Any special requirements or questions..."></textarea>
+          </div>
+          <button class="btn-book" id="submitReqBtn" data-tour="${esc(t.title)}">
+            <i class="fas fa-paper-plane"></i> Send Enquiry to Team
+          </button>
+        </div>
+      </div>
+
+    </div>`;
+
+  document.getElementById('detailModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Booking submit
+  setTimeout(() => {
+    const btn = document.getElementById('submitReqBtn');
+    if (!btn) return;
+    btn.onclick = async () => {
+      const name  = document.getElementById('reqName').value.trim();
+      const email = document.getElementById('reqEmail').value.trim();
+      if (!name || !email) { alert('Please enter your name and email.'); return; }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+      const ok = await saveBooking({
+        tourTitle:   btn.dataset.tour,
+        name,
+        email,
+        phone:       document.getElementById('reqPhone').value.trim() || 'Not provided',
+        date:        document.getElementById('reqDate').value.trim()  || 'Flexible',
+        message:     document.getElementById('reqMsg').value.trim()   || 'No message',
+        submittedAt: new Date().toLocaleString()
+      });
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Enquiry to Team';
+
+      if (ok) {
+        renderAdminLists();
+        alert('Your enquiry has been sent successfully!');
+        document.getElementById('detailModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+  }, 50);
+};
+
+// ===============================
+// RENDER — ADMIN LISTS
+// ===============================
+function renderAdminLists() {
+
+  // TOURS
+  const tourWrap =
+    document.getElementById('adminTourList');
+
+  if(tourWrap){
+
+    tourWrap.innerHTML = tours.map((t, i) => `
+      <div class="item-row">
+        <div>
+          <div class="item-row-name">${esc(t.title)}</div>
+          <div class="item-row-sub">
+            ${esc(t.price)} · ${esc(t.days)}
+          </div>
+        </div>
+
+        <div class="item-actions">
+          <button class="btn-edit"
+            onclick="editTour(${i})">
+            Edit
+          </button>
+
+          <button class="btn-del"
+            onclick="deleteTour(${i})">
+            Delete
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // TESTIMONIALS
+  const testiWrap =
+    document.getElementById('adminTestiList');
+
+  if(testiWrap){
+
+    testiWrap.innerHTML = testimonials.map((t, i) => `
+      <div class="item-row">
+
+        <div>
+          <div class="item-row-name">
+            ${esc(t.name)}
+          </div>
+
+          <div class="item-row-sub">
+            "${esc((t.text || '').substring(0,60))}..."
+          </div>
+        </div>
+
+        <div class="item-actions">
+          <button class="btn-del"
+            onclick="deleteTestimonial(${i})">
+            Delete
+          </button>
+        </div>
+
+      </div>
+    `).join('');
+  }
+
+  // BOOKINGS
+  const reqWrap =
+    document.getElementById('adminRequestsList');
+
+  if(reqWrap){
+
+    reqWrap.innerHTML = customerRequests.length
+      ? customerRequests.map((r, i) => `
+
+        <div class="request-card">
+
+          <div class="request-card-top">
+
+            <span class="request-name">
+              ${esc(r.name)}
+            </span>
+
+            <span class="request-date">
+              ${esc(r.submittedAt || '')}
+            </span>
+
+          </div>
+
+          <div class="request-tour">
+            📌 ${esc(r.tourTitle || '')}
+          </div>
+
+          <div class="request-msg">
+            📧 ${esc(r.email || '')}
+            ·
+            📞 ${esc(r.phone || '')}
+            ·
+            📅 ${esc(r.date || '')}
+          </div>
+
+          <div class="request-msg"
+            style="margin-top:0.3rem;">
+
+            💬 ${esc(r.message || '')}
+
+          </div>
+
+          <button
+            class="btn-del"
+            style="margin-top:0.6rem;font-size:0.74rem;"
+            onclick="deleteRequest(${i})">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      `).join('')
+
+      : `
+        <p style="
+          color:var(--stone);
+          font-size:0.88rem;
+          padding:1rem 0;
+        ">
+          No enquiries yet.
+        </p>
+      `;
+  }
+}
+
+// ===============================
+// EDIT HELPERS
+// ===============================
+window.editTour = async function(i) {
+  const t = tours[i];
+  const n = prompt('Title:', t.title);  if (n && n.trim()) t.title = n.trim();
+  const p = prompt('Price:', t.price);  if (p && p.trim()) t.price = p.trim();
+  const d = prompt('Duration:', t.days);if (d && d.trim()) t.days  = d.trim();
+  try {
+    if (t.id) await db().from('tours').update({ title:t.title, price:t.price, days:t.days }).eq('id', t.id);
+    syncUI();
+    alert('Basic details updated. To edit inclusions/itinerary, delete and re-add.');
+  } catch(e) { console.error(e); }
+};
+
+// ===============================
+// SYNC ALL UI
+// ===============================
+function syncUI() {
+  renderTours();
+  renderTestimonials();
+  renderAdminLists();
+}
+
+// ===============================
+// BUTTON WIRING
+// ===============================
+document.getElementById('addDestBtn').onclick  = addDestination;
+document.getElementById('addTourBtn').onclick  = addTour;
+document.getElementById('addTestiBtn').onclick = addTestimonial;
+
+document.getElementById('clearRequestsBtn').addEventListener('click', async () => {
+  if (!confirm('Clear all requests? This cannot be undone.')) return;
+  try {
+    // delete all bookings from DB (no filter = all rows)
+    await db().from('bookings').delete().neq('id', 0);
+    customerRequests = [];
+    renderAdminLists();
+  } catch(e) {
+    // fallback: just clear locally
+    customerRequests = [];
+    renderAdminLists();
+  }
+});
+
+// Admin modal
+const adminModal = document.getElementById('adminModal');
+document.getElementById('adminNavBtn').addEventListener('click', e => {
+  e.preventDefault();
+  adminModal.classList.add('active');
+  renderAdminLists();
+});
+document.getElementById('closeAdminBtn').addEventListener('click', () => adminModal.classList.remove('active'));
+adminModal.addEventListener('click', e => { if (e.target === adminModal) adminModal.classList.remove('active'); });
+
+// Detail modal
+document.getElementById('closeDetailBtn').addEventListener('click', () => {
+  document.getElementById('detailModal').classList.remove('active');
+  document.body.style.overflow = '';
+});
+document.getElementById('detailModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('detailModal')) {
+    document.getElementById('detailModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.getElementById(btn.dataset.tab).style.display = 'block';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Nav mobile menu
+document.getElementById('menuToggle').addEventListener('click', () =>
+  document.getElementById('navLinks').classList.toggle('active'));
+
+// Hero search
+document.getElementById('searchBtn').addEventListener('click', () =>
+  alert("Tell our travel consultants where you want to go — we'll craft the perfect trip for you!"));
+
+// Newsletter
+document.getElementById('subscribeBtn').addEventListener('click', () => {
+  const em = document.getElementById('newsEmail').value;
+  alert(em && em.includes('@')
+    ? `🎉 Welcome aboard! Deals & updates will be sent to ${em}`
+    : 'Please enter a valid email address.');
+});
+
+</script>
+</body>
+</html>

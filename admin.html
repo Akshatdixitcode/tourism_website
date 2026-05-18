@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+
+    const supabaseUrl ='https://xvmgmtccqyhmtvdgcsif.supabase.co'
+
+    const supabaseKey ='sb_publishable_iHqTPJhwL0Rzox3QZZK_0w_tRyJ1O1M'
+
+    window.supabase = createClient(
+      supabaseUrl,
+      supabaseKey,
+      {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+          detectSessionInUrl: false
+        }
+      }
+    )
+
+    window.db = () => window.supabase
+    window.dbReady = true;
+
+    console.log('Supabase Connected')
+  </script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#f8f6f2;
+      font-family:Inter,sans-serif;
+      padding:40px 20px;
+      color:#111827;
+    }
+
+    .admin-wrap{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .admin-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:30px;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .admin-title{
+      font-size:2rem;
+      font-weight:700;
+    }
+
+    .admin-card{
+      background:#fff;
+      border-radius:24px;
+      padding:30px;
+      margin-bottom:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+
+    .admin-card h2{
+      margin-bottom:20px;
+      font-size:1.5rem;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:16px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid #ddd;
+      font-size:15px;
+      font-family:inherit;
+    }
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    button{
+      background:#18392b;
+      color:#fff;
+      border:none;
+      padding:14px 20px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:600;
+      transition:.2s;
+    }
+
+    button:hover{
+      opacity:.92;
+    }
+
+    .tour-list{
+      display:grid;
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .tour-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      background:#f5f5f5;
+      padding:16px;
+      border-radius:16px;
+      flex-wrap:wrap;
+    }
+
+    .tour-item img{
+      width:90px;
+      height:90px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    .tour-item-content{
+      flex:1;
+    }
+
+    .tour-item strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:1rem;
+    }
+
+    .tour-item small{
+      display:block;
+      margin-top:8px;
+      color:#666;
+      line-height:1.5;
+    }
+
+    .delete-btn{
+      background:#dc2626;
+    }
+
+    .back-btn{
+      text-decoration:none;
+    }
+
+    .request-meta{
+      display:grid;
+      gap:4px;
+      font-size:.92rem;
+    }
+
+    @media(max-width:768px){
+
+      body{
+        padding:20px 14px;
+      }
+
+      .admin-card{
+        padding:20px;
+      }
+
+      .tour-item{
+        flex-direction:column;
+      }
+
+      .tour-item img{
+        width:100%;
+        height:220px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="admin-wrap">
+
+  <div class="admin-header">
+
+    <h1 class="admin-title">
+      Admin Panel
+    </h1>
+
+    <a href="index.html" class="back-btn">
+      <button>
+        ← Back To Website
+      </button>
+    </a>
+
+  </div>
+
+  <!-- ADD TOUR -->
+
+  <div class="admin-card">
+
+    <h2>Add Tour</h2>
+
+    <div class="form-grid">
+
+      <input
+        type="text"
+        id="tourTitle"
+        placeholder="Tour Title">
+
+      <input
+        type="file"
+        id="tourImg"
+        accept="image/*">
+
+      <input
+        type="text"
+        id="tourDays"
+        placeholder="Duration">
+
+      <input
+        type="text"
+        id="tourPrice"
+        placeholder="Price">
+
+      <textarea
+        id="tourInclusions"
+        placeholder="Inclusions (one per line)"></textarea>
+
+      <textarea
+        id="tourExclusions"
+        placeholder="Exclusions (one per line)"></textarea>
+
+      <textarea
+        id="tourItinerary"
+        placeholder="Itinerary"></textarea>
+
+      <textarea
+        id="tourCancellation"
+        placeholder="Cancellation Policy"></textarea>
+
+      <textarea
+        id="tourGuidelines"
+        placeholder="Travel Guidelines"></textarea>
+
+      <button
+        id="addTourBtn"
+        onclick="addTour()">
+
+        Add Tour
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- TOUR LIST -->
+
+  <div class="admin-card">
+
+    <h2>Manage Tours</h2>
+
+    <div
+      class="tour-list"
+      id="tourList"></div>
+
+  </div>
+
+  <!-- TESTIMONIALS -->
+
+  <div class="admin-card">
+
+    <h2>Testimonials</h2>
+
+    <div class="form-grid">
+
+      <input
+        type="text"
+        id="testiName"
+        placeholder="Customer Name">
+
+      <input
+        type="text"
+        id="testiTrip"
+        placeholder="Trip Name">
+
+      <textarea
+        id="testiText"
+        placeholder="Testimonial"></textarea>
+
+      <button onclick="addTestimonial()">
+        Add Testimonial
+      </button>
+
+    </div>
+
+    <div
+      class="tour-list"
+      id="testimonialList"></div>
+
+  </div>
+
+  <!-- CUSTOMER REQUESTS -->
+
+  <div class="admin-card">
+
+    <h2>Customer Requests</h2>
+
+    <div
+      class="tour-list"
+      id="requestList"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+let tours = [];
+let testimonials = [];
+let customerRequests = [];
+
+async function uploadImage(file){
+
+  if(!file) return '';
+
+  const fileName =
+    Date.now() + '-' + file.name;
+
+  const { error } = await db()
+    .storage
+    .from('tour-images')
+    .upload(fileName, file);
+
+  if(error) throw error;
+
+  const { data } = db()
+    .storage
+    .from('tour-images')
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
+}
+
+async function loadTours(){
+
+  try{
+
+    const { data, error } = await db()
+      .from('tours')
+      .select('*')
+      .order('id', { ascending:false });
+
+    if(error) throw error;
+
+    tours = data || [];
+
+    renderTours();
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+}
+
+function renderTours(){
+
+  const wrap =
+    document.getElementById('tourList');
+
+  wrap.innerHTML = tours.map((t,i)=>`
+
+    <div class="tour-item">
+
+      ${
+        t.img
+        ? `<img src="${t.img}" alt="">`
+        : ''
+      }
+
+      <div class="tour-item-content">
+
+        <strong>${t.title}</strong>
+
+        <div>${t.days || ''}</div>
+
+        <div>${t.price || ''}</div>
+
+      </div>
+
+      <button
+        class="delete-btn"
+        onclick="deleteTour(${i})">
+
+        Delete
+
+      </button>
+
+    </div>
+
+  `).join('');
+}
+
+async function addTour(){
+
+  const btn =
+    document.getElementById('addTourBtn');
+
+  try{
+
+    btn.disabled = true;
+
+    const file =
+      document.getElementById('tourImg').files[0];
+
+    const newTour = {
+
+      title:
+        document.getElementById('tourTitle')
+        .value.trim(),
+
+      img:'',
+
+      days:
+        document.getElementById('tourDays')
+        .value.trim(),
+
+      price:
+        document.getElementById('tourPrice')
+        .value.trim(),
+
+      inclusions:
+        document
+        .getElementById('tourInclusions')
+        .value
+        .split('\n')
+        .filter(Boolean),
+
+      exclusions:
+        document
+        .getElementById('tourExclusions')
+        .value
+        .split('\n')
+        .filter(Boolean),
+
+      itinerary:
+        document
+        .getElementById('tourItinerary')
+        .value
+        .split('\n')
+        .filter(Boolean),
+
+      cancellation:
+        document
+        .getElementById('tourCancellation')
+        .value
+        .trim(),
+
+      guidelines:
+        document
+        .getElementById('tourGuidelines')
+        .value
+        .trim()
+    };
+
+    if(!newTour.title){
+
+      alert('Please enter title');
+      return;
+
+    }
+
+    if(file){
+
+      newTour.img =
+        await uploadImage(file);
+
+    }
+
+    const { data, error } = await db()
+      .from('tours')
+      .insert([newTour])
+      .select();
+
+    if(error) throw error;
+
+    tours.unshift(data[0]);
+
+    renderTours();
+
+    alert('Tour Added Successfully');
+
+    [
+      'tourTitle',
+      'tourImg',
+      'tourDays',
+      'tourPrice',
+      'tourInclusions',
+      'tourExclusions',
+      'tourItinerary',
+      'tourCancellation',
+      'tourGuidelines'
+    ].forEach(id=>{
+
+      document.getElementById(id).value='';
+
+    });
+
+  }catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }finally{
+
+    btn.disabled = false;
+
+  }
+}
+
+async function deleteTour(i){
+
+  const t = tours[i];
+
+  if(!confirm('Delete this tour?'))
+    return;
+
+  try{
+
+    const { error } = await db()
+      .from('tours')
+      .delete()
+      .eq('id', t.id);
+
+    if(error) throw error;
+
+    tours.splice(i,1);
+
+    renderTours();
+
+  }catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
+}
+
+async function loadTestimonials(){
+
+  try{
+
+    const { data, error } = await db()
+      .from('testimonials')
+      .select('*')
+      .order('id', { ascending:false });
+
+    if(error) throw error;
+
+    testimonials = data || [];
+
+    renderTestimonials();
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+}
+
+function renderTestimonials(){
+
+  const wrap =
+    document.getElementById('testimonialList');
+
+  wrap.innerHTML = testimonials.map((t,i)=>`
+
+    <div class="tour-item">
+
+      <div class="tour-item-content">
+
+        <strong>${t.name}</strong>
+
+        <div>${t.trip}</div>
+
+        <small>${t.text}</small>
+
+      </div>
+
+      <button
+        class="delete-btn"
+        onclick="deleteTestimonial(${i})">
+
+        Delete
+
+      </button>
+
+    </div>
+
+  `).join('');
+}
+
+async function addTestimonial(){
+
+  try{
+
+    const newTestimonial = {
+
+      name:
+        document.getElementById('testiName')
+        .value.trim(),
+
+      trip:
+        document.getElementById('testiTrip')
+        .value.trim(),
+
+      text:
+        document.getElementById('testiText')
+        .value.trim()
+    };
+
+    if(!newTestimonial.name){
+
+      alert('Enter customer name');
+      return;
+
+    }
+
+    const { data, error } = await db()
+      .from('testimonials')
+      .insert([newTestimonial])
+      .select();
+
+    if(error) throw error;
+
+    testimonials.unshift(data[0]);
+
+    renderTestimonials();
+
+    alert('Testimonial Added');
+
+    [
+      'testiName',
+      'testiTrip',
+      'testiText'
+    ].forEach(id=>{
+
+      document.getElementById(id).value='';
+
+    });
+
+  }catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
+}
+
+async function deleteTestimonial(i){
+
+  const t = testimonials[i];
+
+  if(!confirm('Delete testimonial?'))
+    return;
+
+  try{
+
+    const { error } = await db()
+      .from('testimonials')
+      .delete()
+      .eq('id', t.id);
+
+    if(error) throw error;
+
+    testimonials.splice(i,1);
+
+    renderTestimonials();
+
+  }catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
+}
+async function deleteRequest(i){
+
+  const r = customerRequests[i];
+
+  if(!confirm('Delete this enquiry?'))
+    return;
+
+  try{
+
+    const { error } = await db()
+      .from('bookings')
+      .delete()
+      .eq('id', r.id);
+
+    if(error) throw error;
+
+    customerRequests.splice(i,1);
+
+    renderRequests();
+
+    alert('Enquiry Deleted');
+
+  }catch(e){
+
+    console.error(e);
+
+    alert(e.message);
+
+  }
+}
+async function loadRequests(){
+
+  try{
+
+    const { data, error } = await db()
+      .from('bookings')
+      .select('*')
+      .order('id', { ascending:false });
+
+    if(error) throw error;
+
+    customerRequests = data || [];
+
+    renderRequests();
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+}
+
+function renderRequests(){
+
+  const wrap =
+    document.getElementById('requestList');
+
+  wrap.innerHTML = customerRequests.map((r,i)=>`
+
+    <div class="tour-item">
+
+      <div class="tour-item-content request-meta">
+
+        <strong>${r.name}</strong>
+
+        <div>📞 ${r.phone || ''}</div>
+
+        <div>📧 ${r.email || ''}</div>
+
+        <div>🧳 ${r.tourTitle || r.tour || ''}</div>
+
+        <div>📅 ${r.date || ''}</div>
+
+        <small>${r.message || ''}</small>
+
+      </div>
+
+      <button
+        class="delete-btn"
+        onclick="deleteRequest(${i})">
+
+        Delete
+
+      </button>
+
+    </div>
+
+  `).join('');
+}
+window.addEventListener('load', async () => {
+
+  // wait for supabase init
+  while (!window.db) {
+    await new Promise(r => setTimeout(r, 100));
+  }
+
+  await loadTours();
+
+  await loadTestimonials();
+
+  await loadRequests();
+
+});
+
+</script>
+
+</body>
+</html>
