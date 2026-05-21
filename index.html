@@ -240,6 +240,196 @@
       display: flex; align-items: center; gap: 0.3rem; cursor: pointer;
       transition: gap 0.2s;
     }
+
+    /* LUXURY FOOTER */
+
+.lux-footer{
+  position:relative;
+  background:
+    linear-gradient(
+      180deg,
+      #120d09 0%,
+      #0d0b09 100%
+    );
+  overflow:hidden;
+  padding:5rem 0 1.5rem;
+  color:rgba(255,255,255,0.75);
+}
+
+.footer-pattern{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(212,112,10,0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(30,58,47,0.18),
+      transparent 35%
+    );
+  pointer-events:none;
+}
+
+.footer-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+  gap:3rem;
+  padding-bottom:3rem;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.footer-logo{
+  font-family:'Cormorant Garamond', serif;
+  font-size:2.2rem;
+  color:white;
+  font-weight:600;
+  margin-bottom:1rem;
+}
+
+.footer-line{
+  width:70px;
+  height:2px;
+  background:var(--saffron);
+  margin-bottom:1.4rem;
+}
+
+.footer-desc{
+  line-height:1.9;
+  font-size:0.92rem;
+  color:rgba(255,255,255,0.6);
+  max-width:320px;
+}
+
+.footer-heading{
+  font-family:'Cormorant Garamond', serif;
+  color:white;
+  font-size:1.5rem;
+  margin-bottom:1.3rem;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:0.9rem;
+}
+
+.footer-links a{
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  transition:0.25s;
+  font-size:0.9rem;
+}
+
+.footer-links a:hover{
+  color:var(--saffron-light);
+  transform:translateX(5px);
+}
+
+.footer-contact{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.footer-contact div{
+  display:flex;
+  align-items:flex-start;
+  gap:0.8rem;
+  line-height:1.6;
+  font-size:0.92rem;
+  color:rgba(255,255,255,0.7);
+}
+
+.footer-contact i{
+  color:var(--saffron);
+  margin-top:0.2rem;
+}
+
+.footer-socials{
+  display:flex;
+  gap:0.9rem;
+  margin-top:2rem;
+  flex-wrap:wrap;
+}
+
+.social-icon{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.05);
+  color:white;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:all 0.3s ease;
+  font-size:1rem;
+}
+
+.social-icon:hover{
+  background:var(--saffron);
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(212,112,10,0.3);
+}
+
+.footer-bottom{
+  position:relative;
+  z-index:2;
+  padding-top:1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.footer-bottom p{
+  font-size:0.88rem;
+  color:rgba(255,255,255,0.5);
+}
+
+.footer-bottom-links{
+  display:flex;
+  gap:1.5rem;
+}
+
+.footer-bottom-links a{
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  transition:0.2s;
+  font-size:0.88rem;
+}
+
+.footer-bottom-links a:hover{
+  color:var(--saffron-light);
+}
+
+@media(max-width:900px){
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
     .dest-card:hover .dest-cta { gap: 0.6rem; }
 
     /* FEATURES */
@@ -776,41 +966,117 @@
     </div>
   </div>
 </section>
-<footer>
+<footer class="lux-footer">
+
+  <div class="footer-pattern"></div>
+
   <div class="container">
 
-        <div style="
-  display:flex;
-  justify-content:center;
-  gap:1rem;
-  margin-bottom:1.2rem;
-  flex-wrap:wrap;
-">
+    <div class="footer-grid">
 
-  <a href="#" class="social-icon">
-    <i class="fab fa-instagram"></i>
-  </a>
+      <!-- BRAND -->
+      <div>
+        <div class="footer-logo">
+          🏔 Offbeat Odyssey
+        </div>
 
-  <a href="#" class="social-icon">
-    <i class="fab fa-facebook-f"></i>
-  </a>
+        <div class="footer-line"></div>
 
-  <a href="#" class="social-icon">
-    <i class="fab fa-youtube"></i>
-  </a>
+        <p class="footer-desc">
+          Curated journeys to sacred places and offbeat mountains.
+          Experience luxury, spirituality and adventure together.
+        </p>
 
-  <a href="#" class="social-icon">
-    <i class="fab fa-x-twitter"></i>
-  </a>
+        <div class="footer-socials">
 
-  <a href="#" class="social-icon">
-    <i class="fab fa-linkedin-in"></i>
-  </a>
-    <p>© 2025 <strong>Offbeat Odyssey</strong> — All rights reserved &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+          <a href="#" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
 
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
 
-</div>
+          <a href="#" class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </a>
+
+          <a href="#" class="social-icon">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div>
+        <h3 class="footer-heading">Explore</h3>
+
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#toursSection">Tour Packages</a>
+          <a href="resort.html">Resort Stay</a>
+          <a href="#">Gallery</a>
+          <a href="#">About Us</a>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div>
+        <h3 class="footer-heading">Support</h3>
+
+        <div class="footer-links">
+          <a href="#">FAQs</a>
+          <a href="#">Booking Policy</a>
+          <a href="#">Cancellation Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <h3 class="footer-heading">Get In Touch</h3>
+
+        <div class="footer-contact">
+
+          <div>
+            <i class="fas fa-location-dot"></i>
+            Dehradun, Uttarakhand, India
+          </div>
+
+          <div>
+            <i class="fas fa-phone"></i>
+            +91 98765 43210
+          </div>
+
+          <div>
+            <i class="fas fa-envelope"></i>
+            hello@offbeatodyssey.com
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © 2025 <strong>Offbeat Odyssey</strong> — All rights reserved
+      </p>
+
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
   </div>
+
 </footer>
 
 <!-- DETAIL MODAL -->
