@@ -154,6 +154,26 @@
       font-size: 2.2rem; font-weight: 600; color: var(--ink);
       line-height: 1;
     }
+    .social-icon{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.06);
+  color:white;
+  text-decoration:none;
+  font-size:1rem;
+  transition:all 0.25s ease;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.social-icon:hover{
+  background:var(--saffron);
+  transform:translateY(-3px);
+  color:white;
+}
     .hero-stat-label { font-size: 0.78rem; color: var(--stone); margin-top: 0.25rem; letter-spacing: 0.02em; }
     .hero-visual { position: relative; }
     .hero-img-wrap {
@@ -758,7 +778,38 @@
 </section>
 <footer>
   <div class="container">
+
+        <div style="
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:1.2rem;
+  flex-wrap:wrap;
+">
+
+  <a href="#" class="social-icon">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="#" class="social-icon">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="#" class="social-icon">
+    <i class="fab fa-youtube"></i>
+  </a>
+
+  <a href="#" class="social-icon">
+    <i class="fab fa-x-twitter"></i>
+  </a>
+
+  <a href="#" class="social-icon">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
     <p>© 2025 <strong>Offbeat Odyssey</strong> — All rights reserved &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+
+
+</div>
   </div>
 </footer>
 
