@@ -1097,8 +1097,15 @@
       </h1>
       <p class="hero-desc">Curated treks, sacred yatras, remote valleys. Your journey begins where the map ends — with people who actually live there.</p>
       <div class="hero-actions">
-        <button class="btn-primary" id="searchBtn"><i class="fas fa-compass"></i> Find a journey</button>
-        <button class="btn-ghost"><i class="fas fa-phone"></i> Talk to a guide</button>
+        <button class="btn-primary" id="searchBtn">
+          <i class="fas fa-compass"></i> Find a journey
+        </button>
+
+        <a href="tel:+919876543210" style="text-decoration:none;">
+          <button class="btn-ghost">
+            <i class="fas fa-phone"></i> Talk to a guide
+          </button>
+        </a>
       </div>
       <div class="hero-stats">
         <div><div class="hero-stat-num">200+</div><div class="hero-stat-label">Itineraries crafted</div></div>
@@ -2282,7 +2289,17 @@ function renderAdminLists() {
       </div>
     `).join('');
   }
+document
+  .getElementById('searchBtn')
+  .addEventListener('click', () => {
 
+    document
+      .getElementById('toursSection')
+      .scrollIntoView({
+        behavior: 'smooth'
+      });
+
+});
   // TESTIMONIALS
   const testiWrap =
     document.getElementById('adminTestiList');
