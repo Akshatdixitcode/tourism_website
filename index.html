@@ -382,6 +382,7 @@
 .footer-contact{
   display:flex;
   flex-direction:column;
+  transition: all 0.25s ease;
   gap:1.6rem;
 }
 
@@ -401,7 +402,9 @@
 }
 
 /* FOLLOW SECTION */
-
+.footer-contact a:hover{
+  color: var(--gold-light) !important;
+}
 .follow-wrap{
   margin-top:1rem;
   margin-bottom:3rem;
@@ -1327,19 +1330,50 @@
 
         <div class="footer-contact">
 
+          <!-- LOCATION -->
           <div>
             <i class="fas fa-location-dot"></i>
-            Rishikesh, Uttarakhand, India
+
+            <a
+              href="https://maps.google.com/?q=Rishikesh,Uttarakhand"
+              target="_blank"
+              style="
+                color: rgba(255,255,255,0.75);
+                text-decoration: none;
+              "
+            >
+              Rishikesh, Uttarakhand, India
+            </a>
           </div>
 
+          <!-- PHONE -->
           <div>
             <i class="fas fa-phone"></i>
-            +91 98765 43210
+
+            <a
+              href="tel:+919876543210"
+              style="
+                color: rgba(255,255,255,0.75);
+                text-decoration: none;
+              "
+            >
+              +91 98765 43210
+            </a>
           </div>
 
+          <!-- EMAIL -->
           <div>
             <i class="fas fa-envelope"></i>
-            hello@RishikeshTrails.com
+
+            <a
+              href="mailto:hello@RishikeshTrails.com"
+              style="
+                color: rgba(255,255,255,0.75);
+                text-decoration: none;
+              "
+            >
+              hello@RishikeshTrails.com
+            </a>
           </div>
 
         </div>
