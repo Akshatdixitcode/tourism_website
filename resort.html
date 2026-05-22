@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dream View Resort | Offbeat Odyssey</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Dream View Resort | Luxury Himalayan Retreat</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js'
+
+  const supabaseUrl = 'https://xvmgmtccqyhmtvdgcsif.supabase.co'
+  const supabaseKey = 'sb_publishable_iHqTPJhwL0Rzox3QZZK_0w_tRyJ1O1M'
+
+  window.supabase = createClient(supabaseUrl, supabaseKey, {
+    auth: {
+      persistSession: false,      // ← stops localStorage writes → fixes Tracking Prevention
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  })
+
+  console.log('Supabase Connected')
+</script>
 <style>
+
 :root{
-  --forest:#1e3a2f;
-  --cream:#faf7f2;
-  --stone:#6d6258;
-  --saffron:#d4700a;
-  --white:#fff;
+  --forest:#0f1f1a;
+  --gold:#d4a15d;
+  --cream:#f8f4ee;
+  --stone:#7b746d;
+  --white:#ffffff;
+  --dark:#101010;
+  --glass:rgba(255,255,255,0.08);
 }
 
 *{
@@ -22,143 +41,443 @@
   box-sizing:border-box;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:'DM Sans',sans-serif;
   background:var(--cream);
-  color:#1a1410;
+  color:#111;
+  overflow-x:hidden;
 }
 
-h1,h2,h3{
+h1,h2,h3,h4{
   font-family:'Cormorant Garamond',serif;
 }
 
+img{
+  width:100%;
+  display:block;
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  z-index:1000;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:1rem 2rem;
+
+  border-radius:22px;
+
+  backdrop-filter:blur(18px);
+
+  background:rgba(255,255,255,0.08);
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  box-shadow:0 10px 40px rgba(0,0,0,0.15);
+}
+
+.logo{
+  font-size:1.8rem;
+  color:white;
+  font-weight:600;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+}
+
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-size:0.95rem;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+.nav-btn{
+  text-decoration:none;
+  background:var(--gold);
+  color:white;
+  padding:0.9rem 1.6rem;
+  border-radius:40px;
+  font-size:0.95rem;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.nav-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
 .hero{
-  min-height:70vh;
+  min-height:100vh;
+
   background:
-    linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.45)),
-    url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1400');
+  linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.6)),
+  url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600');
+
   background-size:cover;
   background-position:center;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
-  color:white;
+
+  position:relative;
+
   padding:2rem;
 }
 
 .hero-content{
-  max-width:760px;
+  max-width:900px;
+  animation:fadeUp 1.2s ease;
+}
+
+.hero-tag{
+  display:inline-block;
+  color:var(--gold);
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.08);
+  padding:0.6rem 1.2rem;
+  border-radius:40px;
+  margin-bottom:1.5rem;
+  backdrop-filter:blur(10px);
+  font-size:0.9rem;
+  letter-spacing:1px;
 }
 
 .hero h1{
-  font-size:4rem;
-  margin-bottom:1rem;
-  font-weight:500;
+  font-size:clamp(3.5rem,8vw,7rem);
+  line-height:0.95;
+  color:white;
+  margin-bottom:1.5rem;
+  font-weight:600;
+  letter-spacing:-2px;
 }
 
 .hero p{
-  font-size:1rem;
-  line-height:1.7;
   color:rgba(255,255,255,0.85);
+  font-size:1.1rem;
+  line-height:1.9;
+  max-width:760px;
+  margin:auto;
 }
 
-.btn-book{
-  margin-top:2rem;
-  display:inline-block;
-  background:var(--saffron);
+.hero-buttons{
+  margin-top:2.5rem;
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:var(--gold);
   color:white;
   text-decoration:none;
-  padding:0.9rem 2rem;
-  border-radius:40px;
+  padding:1rem 2rem;
+  border-radius:50px;
   font-weight:600;
+  transition:0.4s;
 }
 
+.btn-primary:hover{
+  transform:translateY(-4px);
+}
+
+.btn-secondary{
+  border:1px solid rgba(255,255,255,0.2);
+  color:white;
+  text-decoration:none;
+  padding:1rem 2rem;
+  border-radius:50px;
+  backdrop-filter:blur(10px);
+  transition:0.4s;
+}
+
+.btn-secondary:hover{
+  background:white;
+  color:black;
+}
+
+/* SCROLL */
+
+.scroll-indicator{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  color:white;
+  font-size:0.9rem;
+  animation:bounce 2s infinite;
+}
+
+/* SECTION */
+
 .section{
-  max-width:1280px;
+  max-width:1350px;
   margin:auto;
-  padding:5rem 2rem;
+  padding:7rem 2rem;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:3rem;
+  margin-bottom:4rem;
 }
 
 .section-title h2{
-  font-size:3rem;
-  margin-bottom:0.5rem;
+  font-size:4rem;
+  margin-bottom:0.8rem;
 }
 
 .section-title p{
   color:var(--stone);
+  max-width:650px;
+  margin:auto;
+  line-height:1.8;
 }
+
+/* STATS */
+
+.stats{
+  margin-top:-70px;
+  position:relative;
+  z-index:10;
+}
+
+.stats-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  padding:0 2rem;
+}
+
+.stat{
+  background:white;
+  padding:2.2rem;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.stat h3{
+  font-size:2.4rem;
+  color:var(--forest);
+}
+
+.stat p{
+  color:var(--stone);
+  margin-top:0.5rem;
+}
+
+/* GALLERY */
 
 .gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1.5rem;
+  columns:4 280px;
+  column-gap:1.5rem;
 }
 
-.gallery img{
+.gallery-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:26px;
+  margin-bottom:1.5rem;
+  break-inside:avoid;
+  cursor:pointer;
+}
+
+.gallery-card img{
+  transition:0.7s ease;
+}
+
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+.overlay{
+  position:absolute;
+  bottom:0;
   width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:1.5rem;
+  padding:1.5rem;
+
+  background:linear-gradient(transparent,rgba(0,0,0,0.85));
+
+  color:white;
+}
+
+.overlay h4{
+  font-size:1.7rem;
+}
+
+/* FEATURES */
+
+.dark-section{
+  background:var(--dark);
+  color:white;
 }
 
 .features{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:1.5rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
 }
 
 .feature{
-  background:white;
-  border-radius:1.5rem;
-  padding:2rem;
+  padding:2.5rem;
+  border-radius:28px;
+
+  background:linear-gradient(
+  145deg,
+  rgba(255,255,255,0.08),
+  rgba(255,255,255,0.03)
+  );
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  transition:0.4s;
+}
+
+.feature:hover{
+  transform:translateY(-10px);
+}
+
+.feature-icon{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  margin-bottom:1.5rem;
 }
 
 .feature h3{
-  margin:1rem 0 0.5rem;
-  font-size:1.5rem;
+  font-size:2rem;
+  margin-bottom:1rem;
 }
 
 .feature p{
-  color:var(--stone);
-  line-height:1.6;
+  color:rgba(255,255,255,0.75);
+  line-height:1.8;
 }
 
+/* TESTIMONIALS */
+
+.testimonials{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2rem;
+}
+
+.testimonial{
+  background:white;
+  border-radius:28px;
+  padding:2.5rem;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.stars{
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+
+.testimonial p{
+  line-height:1.9;
+  color:var(--stone);
+}
+
+.guest{
+  margin-top:1.5rem;
+  font-weight:600;
+}
+
+/* BOOKING */
+
 .booking-wrap{
-  background:var(--forest);
-  border-radius:2rem;
-  padding:3rem;
+  background:
+  linear-gradient(rgba(15,31,26,0.92),rgba(15,31,26,0.92)),
+  url('https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg');
+
+  background-size:cover;
+
+  border-radius:40px;
+  padding:5rem;
   color:white;
+  overflow:hidden;
+  position:relative;
 }
 
 .booking-wrap h2{
-  font-size:2.5rem;
-  margin-bottom:0.5rem;
+  font-size:4rem;
+  margin-bottom:1rem;
 }
 
 .booking-wrap p{
-  color:rgba(255,255,255,0.7);
-  margin-bottom:2rem;
+  color:rgba(255,255,255,0.75);
+  margin-bottom:3rem;
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:1rem;
+  gap:1.5rem;
+}
+
+.input-group{
+  position:relative;
 }
 
 .form-grid input,
 .form-grid textarea{
   width:100%;
-  padding:1rem;
-  border:none;
-  border-radius:1rem;
-  font-family:inherit;
+  padding:1.2rem 1.3rem;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:1rem;
+  outline:none;
+  transition:0.4s;
+}
+
+.form-grid input:focus,
+.form-grid textarea:focus{
+  border:1px solid var(--gold);
+  transform:translateY(-2px);
+}
+
+.form-grid textarea{
+  resize:none;
 }
 
 .full{
@@ -166,121 +485,498 @@ h1,h2,h3{
 }
 
 .submit-btn{
-  margin-top:1rem;
+  margin-top:1.5rem;
   width:100%;
-  background:var(--saffron);
-  color:white;
   border:none;
-  padding:1rem;
-  border-radius:40px;
+  background:var(--gold);
+  color:white;
+  padding:1.2rem;
+  border-radius:50px;
   font-size:1rem;
   font-weight:600;
   cursor:pointer;
+  transition:0.4s;
 }
+
+.submit-btn:hover{
+  transform:translateY(-3px);
+}
+
+/* FOOTER */
 
 footer{
-  text-align:center;
-  padding:2rem;
-  color:var(--stone);
+  background:#0b0b0b;
+  color:white;
+  padding:5rem 2rem 2rem;
 }
 
-@media(max-width:700px){
+.footer-grid{
+  max-width:1300px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;
+}
+
+.footer-logo{
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+
+.footer-logo span{
+  color:var(--gold);
+}
+
+.footer-desc{
+  color:rgba(255,255,255,0.7);
+  line-height:1.9;
+}
+
+.footer-links h4{
+  margin-bottom:1.3rem;
+  font-size:1.4rem;
+}
+
+.footer-links a{
+  display:block;
+  margin-bottom:0.8rem;
+  color:rgba(255,255,255,0.7);
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.footer-links a:hover{
+  color:var(--gold);
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:4rem;
+  color:rgba(255,255,255,0.5);
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:2rem;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#25D366;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  text-decoration:none;
+  z-index:999;
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  animation:pulse 2s infinite;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(50px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes bounce{
+  0%,100%{
+    transform:translate(-50%,0);
+  }
+  50%{
+    transform:translate(-50%,10px);
+  }
+}
+
+@keyframes pulse{
+  0%{
+    box-shadow:0 0 0 0 rgba(37,211,102,0.6);
+  }
+  70%{
+    box-shadow:0 0 0 20px rgba(37,211,102,0);
+  }
+  100%{
+    box-shadow:0 0 0 0 rgba(37,211,102,0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:1rem;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    min-height:90vh;
+  }
+
   .hero h1{
-    font-size:2.7rem;
+    font-size:3.5rem;
+  }
+
+  .section-title h2{
+    font-size:2.8rem;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
   }
 
   .form-grid{
     grid-template-columns:1fr;
   }
+
+  .booking-wrap{
+    padding:3rem 1.5rem;
+  }
+
+  .booking-wrap h2{
+    font-size:2.7rem;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
 }
+
 </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+  <div class="logo">
+    Dream <span>View</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#experience">Experience</a>
+    <a href="#booking">Booking</a>
+  </div>
+
+  <a href="#booking" class="nav-btn">
+    Book Now
+  </a>
+
+</nav>
+
+<!-- HERO -->
+
 <section class="hero">
+
   <div class="hero-content">
-    <h1>Dream View Resort</h1>
+
+    <div class="hero-tag">
+      Luxury Himalayan Retreat
+    </div>
+
+    <h1>
+      Escape Into The Mountains
+    </h1>
 
     <p>
-      A peaceful luxury mountain stay with
-      scenic Himalayan views, modern rooms, swimming pool,
-      delicious food, and unforgettable nature experiences.
+      Experience luxury, serenity, and breathtaking Himalayan views at Dream View Resort.
+      Discover elegant rooms, infinity pool experiences, mountain adventures,
+      and unforgettable moments surrounded by nature.
     </p>
 
-    <a href="#booking" class="btn-book">Book Your Stay</a>
+    <div class="hero-buttons">
+      <a href="#booking" class="btn-primary">
+        Reserve Your Stay
+      </a>
+
+      <a href="#gallery" class="btn-secondary">
+        Explore Resort
+      </a>
+    </div>
+
   </div>
+
+  <div class="scroll-indicator">
+    Scroll Down ↓
+  </div>
+
 </section>
 
-<section class="section">
+<!-- STATS -->
+
+<section class="stats">
+
+  <div class="stats-grid">
+
+    <div class="stat">
+      <h3>4.9★</h3>
+      <p>Guest Rating</p>
+    </div>
+
+    <div class="stat">
+      <h3>1200+</h3>
+      <p>Happy Guests</p>
+    </div>
+
+    <div class="stat">
+      <h3>15+</h3>
+      <p>Luxury Rooms</p>
+    </div>
+
+    <div class="stat">
+      <h3>24/7</h3>
+      <p>Hospitality</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="section" id="gallery">
+
   <div class="section-title">
     <h2>Resort Gallery</h2>
-    <p>Experience the beauty of the Himalayas</p>
+    <p>
+      Discover elegant spaces, scenic mountain landscapes,
+      luxury rooms, and unforgettable experiences.
+    </p>
   </div>
 
   <div class="gallery">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.42.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.43.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.48.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.45.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.50.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.46.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.50.jpeg">
-    <img src="WhatsApp Image 2026-05-11 at 14.18.46.jpeg">
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.42.jpeg">
+      <div class="overlay">
+        <h4>Infinity Pool</h4>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.43.jpeg">
+      <div class="overlay">
+        <h4>Luxury Rooms</h4>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.48.jpeg">
+      <div class="overlay">
+        <h4>Mountain Views</h4>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.45.jpeg">
+      <div class="overlay">
+        <h4>Nature Retreat</h4>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.50.jpeg">
+      <div class="overlay">
+        <h4>Peaceful Spaces</h4>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="WhatsApp Image 2026-05-11 at 14.18.46.jpeg">
+      <div class="overlay">
+        <h4>Luxury Dining</h4>
+      </div>
+    </div>
+
   </div>
+
 </section>
 
-<section class="section">
+<!-- FEATURES -->
+
+<section class="section dark-section" id="experience">
+
   <div class="section-title">
-    <h2>Why Stay With Us</h2>
+    <h2>Why Choose Dream View</h2>
+    <p>
+      Every detail is designed to create an unforgettable luxury mountain escape.
+    </p>
   </div>
 
   <div class="features">
+
     <div class="feature">
-      <div>🏨</div>
-      <h3>Luxury Rooms</h3>
-      <p>Comfortable mountain-view rooms with peaceful surroundings.</p>
+      <div class="feature-icon">🏨</div>
+      <h3>Luxury Suites</h3>
+      <p>
+        Elegant rooms crafted with premium comfort,
+        scenic balconies, and cozy mountain ambience.
+      </p>
     </div>
 
     <div class="feature">
-      <div>🏊</div>
-      <h3>Swimming Pool</h3>
-      <p>Relax in our scenic outdoor pool surrounded by nature.</p>
+      <div class="feature-icon">🏊</div>
+      <h3>Infinity Pool</h3>
+      <p>
+        Relax in our breathtaking outdoor infinity pool
+        overlooking the Himalayan landscape.
+      </p>
     </div>
 
     <div class="feature">
-      <div>🍲</div>
-      <h3>Fresh Food</h3>
-      <p>Delicious local meals prepared with authentic hospitality.</p>
+      <div class="feature-icon">🍽</div>
+      <h3>Fine Dining</h3>
+      <p>
+        Enjoy delicious local cuisine and curated dining
+        experiences prepared by expert chefs.
+      </p>
     </div>
 
     <div class="feature">
-      <div>🌄</div>
-      <h3>Mountain Views</h3>
-      <p>Wake up to breathtaking Himalayan landscapes every day.</p>
+      <div class="feature-icon">🌄</div>
+      <h3>Scenic Views</h3>
+      <p>
+        Wake up every morning to mesmerizing sunrise views
+        and peaceful mountain surroundings.
+      </p>
     </div>
+
   </div>
+
 </section>
 
+<!-- TESTIMONIALS -->
+
+<section class="section">
+
+  <div class="section-title">
+    <h2>Guest Experiences</h2>
+    <p>
+      Hear what our guests say about their unforgettable stay.
+    </p>
+  </div>
+
+  <div class="testimonials">
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+
+      <p>
+        One of the most beautiful mountain resorts we have ever visited.
+        The rooms, food, and views were absolutely incredible.
+      </p>
+
+      <div class="guest">
+        — Priya Sharma
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+
+      <p>
+        The infinity pool overlooking the mountains was breathtaking.
+        Truly a luxury retreat experience.
+      </p>
+
+      <div class="guest">
+        — Rahul Mehta
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+
+      <p>
+        Exceptional hospitality and peaceful atmosphere.
+        Perfect place to relax and reconnect with nature.
+      </p>
+
+      <div class="guest">
+        — Ananya Kapoor
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BOOKING -->
+
 <section class="section" id="booking">
+
   <div class="booking-wrap">
 
-    <h2>Book Your Resort Stay</h2>
+    <h2>Book Your Escape</h2>
 
     <p>
-      Fill in your details and our team will contact you shortly.
+      Fill in your details and our hospitality team
+      will contact you shortly.
     </p>
 
     <div class="form-grid">
-      <input type="text" placeholder="Full Name">
-      <input type="email" placeholder="Email Address">
 
-      <input type="text" placeholder="Phone Number">
-      <input type="text" placeholder="Check-in Date">
+      <div class="input-group">
+        <input type="text" placeholder="Full Name">
+      </div>
 
-      <input type="text" placeholder="Check-out Date">
-      <input type="text" placeholder="Guests">
+      <div class="input-group">
+        <input type="email" placeholder="Email Address">
+      </div>
 
-      <textarea rows="5" class="full" placeholder="Special Requests"></textarea>
+      <div class="input-group">
+        <input type="text" placeholder="Phone Number">
+      </div>
+
+      <div class="input-group">
+        <input type="date">
+      </div>
+
+      <div class="input-group">
+        <input type="date">
+      </div>
+
+      <div class="input-group">
+        <input type="text" placeholder="Guests">
+      </div>
+
+      <div class="input-group full">
+        <textarea rows="6" placeholder="Special Requests"></textarea>
+      </div>
+
     </div>
 
     <button class="submit-btn">
@@ -288,11 +984,67 @@ footer{
     </button>
 
   </div>
+
 </section>
 
+<!-- FOOTER -->
+
 <footer>
-  © 2025 Offbeat Odyssey · Dream View Resort
+
+  <div class="footer-grid">
+
+    <div>
+
+      <div class="footer-logo">
+        Dream <span>View</span>
+      </div>
+
+      <p class="footer-desc">
+        Experience luxury mountain living with breathtaking Himalayan views,
+        elegant stays, unforgettable hospitality, and peaceful escapes into nature.
+      </p>
+
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+
+      <a href="#">Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#experience">Experience</a>
+      <a href="#booking">Booking</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Experiences</h4>
+
+      <a href="#">Mountain View Rooms</a>
+      <a href="#">Infinity Pool</a>
+      <a href="#">Luxury Dining</a>
+      <a href="#">Nature Retreats</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Contact</h4>
+
+      <a href="tel:+919876543210">+91 9876543210</a>
+      <a href="mailto:dreamview@email.com">dreamview@email.com</a>
+      <a href="https://maps.google.com/?q=Rishikesh,Uttarakhand">Rishikesh, Uttarakhand</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Dream View Resort · Luxury Himalayan Retreat
+  </div>
+
 </footer>
+
+<!-- WHATSAPP -->
+
+<a href="https://wa.me/919876543210" class="whatsapp">
+  ✆
+</a>
 
 </body>
 </html>
